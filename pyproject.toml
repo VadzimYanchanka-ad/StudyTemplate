@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "studytemplate"
+version = "0.1.0"
+description = ""
+authors = ["gr801821 <gr801821@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.116.1"
+uvicorn = "^0.35.0"
+pydantic = "^2.11.7"
+sqlalchemy = "^2.0.41"
+psycopg2-binary = "^2.9.10"
+alembic = "^1.16.4"
+python-dotenv = "^1.1.1"
+loguru = "^0.7.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
