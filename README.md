@@ -4,6 +4,14 @@ This project is designed to demonstrate the process of developing a software pro
 
 Study plan [link](https://docs.google.com/document/d/1xcSVSRqYZ_Cjb5ZU_IrroJNyz4EWtotie_vG_t7HDZk)
 
+### Setup Project
+
+```commandline
+1. poetry install
+2. docker compose up -d
+3. poetry run python -m messenger
+```
+
 ### Project structure
 
 - package manager is poetry
