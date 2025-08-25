@@ -1,12 +1,13 @@
 from pydantic import BaseModel
-from fastapi import WebSocket
+from fastapi import WebSocket, status, HTTPException
 from typing import Any
+from collections.abc import Callable
 
 
 class EventManager(BaseModel):
-    events: dict[str, Any] = {}
+    events: dict[str, Callable[[str], Callable]] = {}
 
-    def event(self, event_name: str) -> Any:
+    def event(self, event_name: str) -> Callable:
         def wrapper(func):
             self.events[event_name] = func
             return func
@@ -20,4 +21,4 @@ class EventManager(BaseModel):
         if handler:
             await handler(websocket, data)
         else:
-            print(f"Нет обработчика события!")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"No handler for event: {event_name}")

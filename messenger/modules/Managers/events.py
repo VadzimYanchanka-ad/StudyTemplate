@@ -8,9 +8,7 @@ eventManager = EventManager()
 
 @eventManager.event("/message/send")
 async def send_message(websocket: WebSocket, data: dict):
-    msg = Message(
-        content=data.get("content"),
-        sender_id=data.get("sender_id"),
-        chat_id = data.get("chat_id")
-    )
+    msg = Message.model_validate(data)
+
     await websocket.send_json(jsonable_encoder(msg))
+    
