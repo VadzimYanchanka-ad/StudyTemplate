@@ -1,5 +1,5 @@
-from messenger.modules.Managers.eventManager import EventManager
-from messenger.modules.Managers.sessionManager import SessionManager
+from messenger.modules.Managers.event_manager import EventManager
+from messenger.modules.Managers.session_manager import SessionManager
 from fastapi import WebSocket
 from fastapi.encoders import jsonable_encoder
 from messenger.schemas.message import Message

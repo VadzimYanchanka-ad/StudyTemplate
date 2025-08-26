@@ -1,8 +1,8 @@
 from fastapi import APIRouter, WebSocket, status, HTTPException
 from messenger.modules.Managers.events import eventManager
-from messenger.schemas.sessionStorage import Session
+from messenger.schemas.session_storage import Session
 import uuid
-from messenger.modules.Managers.sessionManager import SessionManager
+from messenger.modules.Managers.session_manager import SessionManager
 
 
 router = APIRouter()

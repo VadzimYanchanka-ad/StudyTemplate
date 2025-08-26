@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from uuid import UUID
-from messenger.schemas.sessionStorage import SessionStorage, Session
+from messenger.schemas.session_storage import SessionStorage, Session
 from typing import List
 
 
