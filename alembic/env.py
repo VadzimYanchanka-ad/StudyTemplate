@@ -69,7 +69,7 @@ async def run_async_migrations() -> None:
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
-        connect_args={"server_settings": {"search_path": pmagent_config.PG_SCHEMA}},
+        connect_args={"server_settings": {"search_path": app_config.PG_SCHEMA}},
     )
 
     async with connectable.connect() as connection:

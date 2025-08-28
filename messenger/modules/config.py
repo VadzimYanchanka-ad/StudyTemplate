@@ -27,7 +27,7 @@ class Config:
 
     def __init__(self):
         self.PG_HOST = os.getenv("PG_HOST")
-        self.PG_PORT = str(os.getenv("PG_PORT"))
+        self.PG_PORT = int(os.getenv("PG_PORT"))
         self.PG_USER = os.getenv("PG_USER")
         self.PG_PASSWORD = os.getenv("PG_PASSWORD")
         self.PG_DATABASE = os.getenv("PG_DATABASE")

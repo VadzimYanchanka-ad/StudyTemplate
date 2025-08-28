@@ -1,10 +1,13 @@
 import datetime as dt
 import json
+
+from messenger.modules.config import config
+
 from typing import Any, Callable, Optional
 
 from sqlalchemy import JSON, DateTime, func
+from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
 
 class DateTimeJSON(JSON):
     """
@@ -30,7 +33,7 @@ def _converter(value: Any) -> str | None:
     return None
 
 
-class Base(DeclarativeBase):
+class Base(AsyncAttrs, DeclarativeBase):
     type_annotation_map = {dict[str, Any]: DateTimeJSON}
 
 
