@@ -1,11 +1,13 @@
 from messenger.db.base import Base
 
 
+
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 
 from datetime import datetime
+from messenger.schemas.message import MessageCreate
 
 class Messages(Base):
     __tablename__ = "messages"
@@ -19,4 +21,11 @@ class Messages(Base):
     user = relationship("Users", back_populates="messages")
     chat = relationship("Chats", back_populates="messages")
 
+    @classmethod
+    def from_request(cls, new_message: MessageCreate):
+        return cls(
+            user_id = new_message.user_id,
+            chat_id = new_message.chat_id,
+            message = new_message.message
+        )
     

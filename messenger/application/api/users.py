@@ -7,13 +7,11 @@ from messenger.schemas.user import CreateUser, UserOut
 from messenger.modules.db import get_db
 from messenger.models.users import Users
 
-router = APIRouter(
-        prefix="/user"
-)
+router = APIRouter(prefix="/user")
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserOut)
 async def create_user(user: CreateUser, db: AsyncSession = Depends(get_db)):
-    new_user = Users(**user.dict()) 
+    new_user = Users.from_request(user)
 
     db.add(new_user)
 

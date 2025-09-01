@@ -12,13 +12,11 @@ from messenger.modules.db import get_db
 from messenger.models.chats import Chats
 from messenger.models.chat_user import ChatUser
 
-router = APIRouter(
-        prefix="/chat"
-)
+router = APIRouter(prefix="/chat")
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=ChatOut)
-async def create_chat(chat :CreateChat, db : AsyncSession = Depends(get_db)):
-    chat_room = Chats(**chat.dict())
+async def create_chat(chat: CreateChat, db: AsyncSession = Depends(get_db)):
+    chat_room = Chats.from_request(chat)
 
     db.add(chat_room)
 

@@ -8,13 +8,11 @@ from messenger.modules.db import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-router = APIRouter(
-        prefix="/message"
-)
+router = APIRouter(prefix="/message")
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=MessageOut)
 async def create_message(msg: MessageCreate, db: AsyncSession = Depends(get_db)):    
-    new_message = Messages(**msg.dict())
+    new_message = Messages.from_request(msg)
 
     db.add(new_message)
 
