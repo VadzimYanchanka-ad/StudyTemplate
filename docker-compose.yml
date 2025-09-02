@@ -10,6 +10,25 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
+  app:
+    build: .
+    container_name: messenger_app
+    restart: unless-stopped
+    ports: 
+      - "8000:80"
+    environment: 
+      - PG_HOST=localhost
+      - PG_PORT=5432
+      - PG_PASSWORD=postgres
+      - PG_NAME=postgres
+      - PG_USER=postgres
+      - PG_DATABASE=postgres
+      - PG_SCHEMA=public
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+  
 
 volumes:
   postgres:
